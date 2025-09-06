@@ -1,0 +1,32 @@
+{
+  "llm": {
+    "root_cause": "The package `express-validator` required by `src/api/user.controller.js` is not present in the project's dependency list or lockfile, causing npm to fail with EMODULENOTFOUND during `npm ci`.",
+    "failed_step": "Install dependencies (`npm ci`)",
+    "key_errors": [
+      "EMODULENOTFOUND \u2013 Cannot find module 'express-validator'",
+      "Cannot find module 'express-validator' from 'src/api/user.controller.js' (test suite crash)"
+    ],
+    "suggested_fixes": [
+      "Add `express-validator` to `dependencies` (or correct its version) and commit the change.",
+      "Regenerate `package-lock.json` by deleting `node_modules` and the lockfile, running `npm install`, then `npm ci` to ensure lockfile consistency.",
+      "If the package is private, verify CI registry URL and authentication tokens."
+    ],
+    "severity": "blocker",
+    "confidence": 92,
+    "human_readable": "## CI Failure Report\n\n**Root Cause**\n- `express-validator` is missing from `package.json`/`package-lock.json`, so `npm ci` cannot install it, leading to an `EMODULENOTFOUND` error.\n\n**Failed Step**\n- The pipeline stops at the **Install dependencies** stage (`npm ci`).\n\n**Key Errors**\n1. `EMODULENOTFOUND \u2013 Cannot find module 'express-validator'`\n2. Test runner crashes with `Cannot find module 'express-validator' from 'src/api/user.controller.js'`.\n\n**Suggested Fixes**\n- **Add the dependency**: `npm i --save express-validator` and commit the updated `package.json`.\n- **Regenerate the lockfile**: delete `node_modules` and `package-lock.json`, run `npm install`, then `npm ci` to ensure the lockfile matches the actual dependencies.\n- **Check registry settings** if `express-validator` is a private package (registry URL, auth token).\n\n**Severity**: `blocker` \u2013 the pipeline cannot proceed without the missing module.\n\n**Confidence**: 92% \u2013 the evidence points directly to a missing/incorrect dependency declaration.\n"
+  },
+  "quick": {
+    "error_lines": [
+      "7: 2025-09-05T18:12:44Z npm ERR! code EMODULENOTFOUND",
+      "8: 2025-09-05T18:12:44Z npm ERR! Cannot find module 'express-validator'",
+      "9: 2025-09-05T18:12:44Z npm ERR! Require stack:",
+      "10: 2025-09-05T18:12:44Z npm ERR! - /home/runner/work/app/src/index.js",
+      "14: 2025-09-05T18:12:46Z   \u00e2\u2014 Test suite failed to run",
+      "15: 2025-09-05T18:12:46Z     Error: Cannot find module 'express-validator' from 'src/api/user.controller.js'",
+      "16: 2025-09-05T18:12:47Z Summary: Step \"Install dependencies\" failed",
+      "17: 2025-09-05T18:12:47Z Error: Process completed with exit code 1"
+    ],
+    "total_lines": 17,
+    "error_like_count": 8
+  }
+}

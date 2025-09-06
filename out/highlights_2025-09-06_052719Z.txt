@@ -1,0 +1,9 @@
+Quick Error-like Lines (first 50):
+7: 2025-09-05T18:12:44Z npm ERR! code EMODULENOTFOUND
+8: 2025-09-05T18:12:44Z npm ERR! Cannot find module 'express-validator'
+9: 2025-09-05T18:12:44Z npm ERR! Require stack:
+10: 2025-09-05T18:12:44Z npm ERR! - /home/runner/work/app/src/index.js
+14: 2025-09-05T18:12:46Z   â— Test suite failed to run
+15: 2025-09-05T18:12:46Z     Error: Cannot find module 'express-validator' from 'src/api/user.controller.js'
+16: 2025-09-05T18:12:47Z Summary: Step "Install dependencies" failed
+17: 2025-09-05T18:12:47Z Error: Process completed with exit code 1

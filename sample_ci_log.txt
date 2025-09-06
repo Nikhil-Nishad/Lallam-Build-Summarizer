@@ -1,0 +1,16 @@
+2025-09-05T18:12:33Z Starting job: build
+2025-09-05T18:12:34Z Running step: Checkout repository
+2025-09-05T18:12:40Z Running step: Install dependencies
+2025-09-05T18:12:40Z > npm ci
+2025-09-05T18:12:41Z npm WARN deprecated left-pad@1.3.0: use String.prototype.padStart()
+2025-09-05T18:12:44Z npm ERR! code EMODULENOTFOUND
+2025-09-05T18:12:44Z npm ERR! Cannot find module 'express-validator'
+2025-09-05T18:12:44Z npm ERR! Require stack:
+2025-09-05T18:12:44Z npm ERR! - /home/runner/work/app/src/index.js
+2025-09-05T18:12:45Z Running step: Run unit tests
+2025-09-05T18:12:45Z > npm test -- --coverage
+2025-09-05T18:12:46Z FAIL src/api/user.test.js
+2025-09-05T18:12:46Z   ● Test suite failed to run
+2025-09-05T18:12:46Z     Error: Cannot find module 'express-validator' from 'src/api/user.controller.js'
+2025-09-05T18:12:47Z Summary: Step "Install dependencies" failed
+2025-09-05T18:12:47Z Error: Process completed with exit code 1
