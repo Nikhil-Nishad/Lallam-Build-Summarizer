@@ -2,7 +2,7 @@ name: LangChain CI Log Summarizer
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -34,7 +34,7 @@ jobs:
           python summarize_logs.py test_logs.txt > summary.txt
 
       - name: Upload Summary Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: log-summary
           path: summary.txt
@@ -47,5 +47,5 @@ jobs:
           message: |
             📝 **LangChain Log Summary**
             ```
-            $(cat summary.txt)
+            \$(cat summary.txt)
             ```
