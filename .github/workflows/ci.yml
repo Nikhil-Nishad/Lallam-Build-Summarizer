@@ -20,7 +20,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt pytest
+
+      - name: Run Tests (Capture Logs)
+        run: |
+          set -o pipefail
+          pytest -vv | tee test_logs.txt
 
       - name: Run Tests (Capture Logs)
         run: |
