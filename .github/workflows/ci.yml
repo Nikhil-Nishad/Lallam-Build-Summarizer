@@ -1,0 +1,51 @@
+name: LangChain CI Log Summarizer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-summarize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Tests (Capture Logs)
+        run: |
+          set -o pipefail
+          pytest -vv | tee test_logs.txt
+
+      - name: Run LangChain Summarizer
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          python summarize_logs.py test_logs.txt > summary.txt
+
+      - name: Upload Summary Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: log-summary
+          path: summary.txt
+
+      - name: Comment on PR with Summary
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: log-summary
+          message: |
+            📝 **LangChain Log Summary**
+            ```
+            $(cat summary.txt)
+            ```
